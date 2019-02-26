@@ -63,6 +63,8 @@ public class TeamsFragment extends Fragment implements TeamsContract.View {
             }
         });
 
+        setUIListener();
+
         return view;
     }
 
