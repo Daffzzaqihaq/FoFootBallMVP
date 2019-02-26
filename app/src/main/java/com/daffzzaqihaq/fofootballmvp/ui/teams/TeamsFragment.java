@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.daffzzaqihaq.fofootballmvp.R;
@@ -31,6 +33,10 @@ public class TeamsFragment extends Fragment implements TeamsContract.View {
     @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
     Unbinder unbinder;
+    @BindView(R.id.edtSearch)
+    EditText edtSearch;
+    @BindView(R.id.btnSearch)
+    ImageButton btnSearch;
     // Menambahkan variable yg dibutuhkan
     private ProgressDialog progressDialog;
     private TeamsPresenter teamsPresenter = new TeamsPresenter(this);
@@ -58,6 +64,18 @@ public class TeamsFragment extends Fragment implements TeamsContract.View {
         });
 
         return view;
+    }
+
+    private void setUIListener() {
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Mengambil inputan dari user di dalam edit Text
+                String searchText = edtSearch.getText().toString().toLowerCase();
+                // Kita kirimkan Inputan user ke Presenter untuk di request ke API
+                teamsPresenter.getSearchTeams(searchText);
+            }
+        });
     }
 
     @Override

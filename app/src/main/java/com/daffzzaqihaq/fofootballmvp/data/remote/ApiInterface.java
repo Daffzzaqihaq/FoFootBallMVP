@@ -10,4 +10,9 @@ public interface ApiInterface {
 
     @GET("/api/v1/json/1/search_all_teams.php")
     Call<TeamResponse> getAllTeams(@Query("s")String s, @Query("c")String c);
+
+    // Endpoint untuk melakukan Search
+    @GET("searchteams.php")
+    Call<TeamResponse> getSearchTeams(@Query("t") String t);
+
 }
